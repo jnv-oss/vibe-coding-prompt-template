@@ -1,8 +1,8 @@
 import type { ClaimField, Settlement } from '../../types/settlement';
-import airlineBaggage from './example-airline-baggage-fee-2026.json';
-import socialAppPrivacy from './example-social-app-data-privacy-2026.json';
-import streamingPriceFixing from './example-streaming-price-fixing-2027.json';
-import expiredRetailer from './example-expired-retailer-2020.json';
+import landsEnd from './landsend-data-breach-settlement-2026.json';
+import situsAmc from './situsamc-data-incident-settlement-2026.json';
+import deereRepair from './deere-repair-settlement-2026.json';
+import comcastXfinity from './comcast-xfinity-data-breach-settlement-2026.json';
 
 const VALID_FIELD_TYPES: ReadonlySet<ClaimField['type']> = new Set(['text', 'email', 'date']);
 
@@ -21,10 +21,10 @@ function asSettlement(raw: Settlement): Settlement {
 }
 
 const allSettlements: Settlement[] = [
-  airlineBaggage,
-  socialAppPrivacy,
-  streamingPriceFixing,
-  expiredRetailer,
+  landsEnd,
+  situsAmc,
+  deereRepair,
+  comcastXfinity,
 ].map((s) => asSettlement(s as Settlement));
 
 export default allSettlements;
