@@ -38,6 +38,8 @@ export default function ClaimPage() {
         <ClaimForm fields={settlement.claimFields} onSubmit={setValues} />
       ) : (
         <ClaimPreview
+          settlementId={settlement.id}
+          settlementName={settlement.name}
           fields={settlement.claimFields}
           values={values}
           administratorUrl={settlement.administratorUrl}
