@@ -14,10 +14,11 @@ Use this as the short build-facing version of the PRD. Do not paste the entire P
 - Auto-fill claim preview - maps questionnaire + form answers to the settlement's official field layout; read-only, links to the official site; never submits.
 - Non-legal-advice disclaimer - visible on the settlement list, questionnaire, and preview screens.
 - Session-based, no accounts - nothing persisted server-side beyond the current page; no raw PII in logs (there is no backend to log to).
+- Closing-soon deadline reminder - a badge on the list/detail pages when a settlement's deadline is within 14 days; fully client-side (`src/lib/deadline.ts`), no accounts/email/backend.
 
 ## Nice-To-Have Features
 
-- Email/notification for newly matching settlements.
+- Email notification for newly matching settlements (distinct from the closing-soon badge above - needs a backend/database/email service, not yet built).
 - Saved profiles / accounts for returning users.
 - Automated settlement discovery (scraping) to replace the curated list.
 

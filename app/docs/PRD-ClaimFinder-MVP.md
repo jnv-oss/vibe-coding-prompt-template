@@ -42,6 +42,15 @@ account required to use the MVP.
 - HTTPS everywhere; if any data is persisted (e.g. temporary session store),
   it's encrypted at rest; no logging of raw form field values (name,
   address, order numbers, etc.).
+- Closing-soon deadline reminder: settlements within 14 days of their claim
+  deadline are visibly flagged on the list and detail pages. Fully
+  client-side (computed from today's date vs. the settlement's deadline) —
+  no accounts, no email, no backend, consistent with the "no backend"
+  constraint below. Added post-launch (2026-09-18) as the first bounded
+  post-MVP feature; the original "email notification for matching
+  settlements" nice-to-have is a distinct, larger feature (needs a way to
+  store an email address and something to send from) and remains
+  unimplemented.
 
 ## Nice-to-have (not blocking MVP)
 - Email/notification when a new settlement matching a user's past answers

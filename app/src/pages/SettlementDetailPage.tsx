@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import Disclaimer from '../components/Disclaimer';
 import EligibilityQuestionnaire from '../components/EligibilityQuestionnaire';
 import { getSettlementById } from '../data/settlements';
+import { daysUntil, isClosingSoon } from '../lib/deadline';
 
 export default function SettlementDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -32,6 +33,15 @@ export default function SettlementDetailPage() {
         <a href={settlement.administratorUrl} target="_blank" rel="noreferrer" className="text-blue-700 hover:underline">
           official settlement site
         </a>
+        {isClosingSoon(settlement.deadline) && (
+          <>
+            {' '}
+            &middot;{' '}
+            <span className="text-orange-800 font-medium">
+              Closing in {daysUntil(settlement.deadline)} day{daysUntil(settlement.deadline) === 1 ? '' : 's'}
+            </span>
+          </>
+        )}
       </p>
       <EligibilityQuestionnaire
         questions={settlement.eligibilityQuestions}
