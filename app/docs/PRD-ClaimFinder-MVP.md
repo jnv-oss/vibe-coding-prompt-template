@@ -61,6 +61,14 @@ account required to use the MVP.
   sync, and never includes settlement-specific identifiers (notice IDs,
   VINs, etc.) — those still require a fresh entry per settlement. Added
   post-launch (2026-09-18) as the second bounded post-MVP feature.
+- Category filter and search: each settlement is tagged with a category
+  (data breach, antitrust, healthcare privacy, product liability); the
+  settlement list has category filter pills plus a text search over
+  name/summary. Fully client-side (`src/lib/filterSettlements.ts`).
+  Added post-launch (2026-09-18) as the third bounded post-MVP feature,
+  ahead of "automated settlement discovery" below — filtering matters
+  more once there's more than a handful of curated settlements to
+  scroll through.
 
 ## Nice-to-have (not blocking MVP)
 - Email/notification when a new settlement matching a user's past answers
@@ -158,8 +166,8 @@ account required to use the MVP.
   "oneLiner": "A web app that helps consumers discover open class action settlements they qualify for and pre-fills the official claim form for them to review and submit themselves.",
   "targetUsers": "Individual consumers checking eligibility for class action settlement payouts",
   "phase": "Foundation",
-  "mustHave": ["curated settlement list", "eligibility questionnaire", "auto-fill claim preview", "non-legal-advice disclaimer", "session-based no-account flow", "HTTPS + encrypted-at-rest + no raw-PII logging"],
-  "niceToHave": ["notifications for new matching settlements", "saved profiles/accounts", "automated settlement discovery"],
+  "mustHave": ["curated settlement list", "eligibility questionnaire", "auto-fill claim preview", "non-legal-advice disclaimer", "session-based no-account flow", "HTTPS + encrypted-at-rest + no raw-PII logging", "closing-soon deadline reminder", "opt-in local saved profile", "category filter and search"],
+  "niceToHave": ["email notifications for matching settlements", "full accounts with cross-device profile sync", "automated settlement discovery"],
   "notInMvp": ["auto-submission on user's behalf", "legal representation or advice", "payments/monetization", "notarized/e-signature flows"],
   "successMetrics": ["visitor can complete discovery-to-filled-preview flow for a seeded settlement without errors", "ineligible users are correctly blocked before auto-fill", "no raw PII appears in logs"]
 }

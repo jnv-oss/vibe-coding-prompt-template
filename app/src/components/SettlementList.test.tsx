@@ -10,6 +10,7 @@ function settlement(overrides: Partial<Settlement>): Settlement {
     name: 'Test Settlement',
     administratorUrl: 'https://example-settlement-administrator.test/',
     deadline: '2099-01-01',
+    category: 'data-breach',
     summary: 'A test settlement.',
     eligibilityQuestions: [],
     claimFields: [],
@@ -42,6 +43,16 @@ describe('SettlementList', () => {
     );
 
     expect(screen.queryByText(/closing in/i)).not.toBeInTheDocument();
+  });
+
+  it('shows the settlement category as a badge', () => {
+    render(
+      <MemoryRouter>
+        <SettlementList settlements={[settlement({ id: 'antitrust-one', category: 'antitrust' })]} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText('Antitrust')).toBeInTheDocument();
   });
 
   it('renders the empty state when there are no settlements', () => {

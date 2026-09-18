@@ -50,4 +50,9 @@ change after a claims-administration order.
 Add a new settlement the same way: find its official administrator site
 (never guess a domain — search-engine snippets have gotten this wrong
 before), confirm the deadline and eligibility from at least two independent
-sources, and only then write the JSON file.
+sources, and only then write the JSON file. Every settlement also needs a
+`category` (one of `data-breach`, `antitrust`, `healthcare-privacy`,
+`product-liability` — see `src/types/settlement.ts`), used by the list
+page's filter pills; `src/data/settlements/index.ts` throws at import time
+if it's missing or misspelled. A genuinely new category is fine to add —
+update `SETTLEMENT_CATEGORY_LABELS` in `src/types/settlement.ts` too.

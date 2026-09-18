@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { Settlement } from '../types/settlement';
+import { SETTLEMENT_CATEGORY_LABELS, type Settlement } from '../types/settlement';
 import { daysUntil, isClosingSoon } from '../lib/deadline';
 
 interface Props {
@@ -27,6 +27,9 @@ export default function SettlementList({ settlements }: Props) {
                 </span>
               )}
             </div>
+            <span className="inline-block mt-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1">
+              {SETTLEMENT_CATEGORY_LABELS[s.category]}
+            </span>
             <p className="text-gray-700 mt-1">{s.summary}</p>
             <p className="text-sm text-gray-500 mt-2">
               Claim deadline: <time dateTime={s.deadline}>{s.deadline}</time>

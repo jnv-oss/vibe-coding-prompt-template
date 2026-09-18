@@ -32,5 +32,5 @@ Not applicable — `aiScope: none`. This product has no AI features.
 - Data fetching: none — settlement data is statically imported from `src/data/settlements/*.json` at build time, no runtime fetch.
 - State management: local React component state only (`useState`); the one exception is `src/lib/savedProfile.ts`, which persists only `fullName`/`email`/`mailingAddress` to `localStorage`, and only when the user opts in via the "remember my info" checkbox in `ClaimForm` (see `AGENTS.md` Gotchas). Nothing else uses `localStorage`, cookies, or global stores.
 - Forms/validation: controlled inputs bound to component state; required eligibility questions block progression before any submit-shaped action.
-- Error handling: malformed settlement JSON is caught by the TypeScript typecheck at build time, not at runtime.
+- Error handling: malformed settlement JSON is caught by the TypeScript typecheck at build time, plus a runtime check in `src/data/settlements/index.ts` for `claimFields[].type` and `category` (JSON imports widen literal unions to `string`, so the typecheck alone can't catch a typo'd enum value — that check throws at import time instead).
 - Logging/monitoring: none in MVP — no analytics/error-reporting SDK, specifically to avoid capturing form field values in breadcrumbs.

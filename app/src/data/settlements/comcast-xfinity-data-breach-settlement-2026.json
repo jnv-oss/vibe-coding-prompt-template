@@ -3,6 +3,7 @@
   "name": "Hasson v. Comcast Cable Communications LLC (Xfinity Data Breach Settlement)",
   "administratorUrl": "https://www.comcastbreachsettlement.com/",
   "deadline": "2026-09-14",
+  "category": "data-breach",
   "summary": "$117.5 million settlement over an October 2023 breach exposing Xfinity customer data. Kept here (past its claim deadline) as a real example of a closed settlement, to exercise expired-settlement filtering with real data rather than a fabricated fixture.",
   "eligibilityQuestions": [
     {
