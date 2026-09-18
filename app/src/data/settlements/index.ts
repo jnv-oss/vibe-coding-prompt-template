@@ -3,6 +3,9 @@ import landsEnd from './landsend-data-breach-settlement-2026.json';
 import situsAmc from './situsamc-data-incident-settlement-2026.json';
 import deereRepair from './deere-repair-settlement-2026.json';
 import comcastXfinity from './comcast-xfinity-data-breach-settlement-2026.json';
+import fairchildPixel from './fairchild-medical-center-pixel-settlement-2026.json';
+import hyundaiKiaAcu from './hyundai-kia-airbag-control-unit-settlement-2027.json';
+import nonbankAtm from './nonbank-atm-surcharge-settlement-2027.json';
 
 const VALID_FIELD_TYPES: ReadonlySet<ClaimField['type']> = new Set(['text', 'email', 'date']);
 
@@ -25,6 +28,9 @@ const allSettlements: Settlement[] = [
   situsAmc,
   deereRepair,
   comcastXfinity,
+  fairchildPixel,
+  hyundaiKiaAcu,
+  nonbankAtm,
 ].map((s) => asSettlement(s as Settlement));
 
 export default allSettlements;

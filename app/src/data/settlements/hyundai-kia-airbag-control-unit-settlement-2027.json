@@ -1,0 +1,20 @@
+{
+  "id": "hyundai-kia-airbag-control-unit-settlement-2027",
+  "name": "Hyundai and Kia Airbag Control Unit (ACU) Defect Settlement",
+  "administratorUrl": "https://www.acusettlement.com/",
+  "deadline": "2027-04-08",
+  "summary": "$62.1 million settlement resolving claims that certain Hyundai and Kia vehicles have defective airbag control units that may fail to deploy the airbag correctly in a collision.",
+  "eligibilityQuestions": [
+    {
+      "id": "ownedEligibleVehicle",
+      "text": "Did you own or lease an eligible vehicle (2011-2019 Hyundai Sonata/Sonata Hybrid, 2018-2023 Hyundai Kona, 2022-2023 Hyundai Kona N, 2019-2021 Hyundai Veloster, 2010-2013 Kia Forte/Forte Koup, 2011-2020 Kia Optima, 2011-2016 Kia Optima Hybrid, or 2011-2012/2014 Kia Sedona) as of April 14, 2025?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name", "type": "text" },
+    { "id": "email", "label": "Email address", "type": "email" },
+    { "id": "vin", "label": "Vehicle Identification Number (VIN)", "type": "text" },
+    { "id": "mailingAddress", "label": "Mailing address", "type": "text", "optional": true }
+  ]
+}

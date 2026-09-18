@@ -7,7 +7,7 @@ describe('getActiveSettlements', () => {
     const active = getActiveSettlements(now);
 
     expect(active.some((s) => s.id === 'comcast-xfinity-data-breach-settlement-2026')).toBe(false);
-    expect(active.length).toBeGreaterThanOrEqual(3);
+    expect(active.length).toBeGreaterThanOrEqual(6);
   });
 
   it('sorts active settlements by soonest deadline first', () => {

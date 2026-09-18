@@ -1,0 +1,24 @@
+{
+  "id": "nonbank-atm-surcharge-settlement-2027",
+  "name": "Burke v. Visa, Mastercard Nonbank ATM Surcharge Settlement",
+  "administratorUrl": "https://www.nonbankatmsurchargesettlement.com/",
+  "deadline": "2027-02-10",
+  "summary": "$167.5 million settlement (Visa $88.775M + Mastercard $78.725M) resolving antitrust claims over surcharge fees paid at independent (non-bank) ATMs in the U.S. between October 2007 and August 2026. No documentation required to file.",
+  "eligibilityQuestions": [
+    {
+      "id": "paidSurcharge",
+      "text": "Did you pay a surcharge fee when withdrawing cash from an independent (non-bank) ATM between October 24, 2007 and August 14, 2026?",
+      "required": true
+    },
+    {
+      "id": "usTransaction",
+      "text": "Was the withdrawal made in the United States using an ATM or PIN-debit card linked to a deposit account?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name", "type": "text" },
+    { "id": "email", "label": "Email address", "type": "email" },
+    { "id": "mailingAddress", "label": "Mailing address", "type": "text" }
+  ]
+}
