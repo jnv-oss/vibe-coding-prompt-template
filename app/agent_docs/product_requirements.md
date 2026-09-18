@@ -15,11 +15,12 @@ Use this as the short build-facing version of the PRD. Do not paste the entire P
 - Non-legal-advice disclaimer - visible on the settlement list, questionnaire, and preview screens.
 - Session-based, no accounts - nothing persisted server-side beyond the current page; no raw PII in logs (there is no backend to log to).
 - Closing-soon deadline reminder - a badge on the list/detail pages when a settlement's deadline is within 14 days; fully client-side (`src/lib/deadline.ts`), no accounts/email/backend.
+- Saved profile (opt-in, local only) - a "remember my info" checkbox saves fullName/email/mailingAddress to the browser's `localStorage` (`src/lib/savedProfile.ts`), off by default, clearable anytime; never saves settlement-specific fields (VINs, notice IDs, etc.).
 
 ## Nice-To-Have Features
 
 - Email notification for newly matching settlements (distinct from the closing-soon badge above - needs a backend/database/email service, not yet built).
-- Saved profiles / accounts for returning users.
+- Full accounts with login and server-side, cross-device profile storage (distinct from the local-only saved profile above - needs a backend, not yet built).
 - Automated settlement discovery (scraping) to replace the curated list.
 
 ## Out Of Scope

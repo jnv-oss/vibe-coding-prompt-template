@@ -51,6 +51,16 @@ account required to use the MVP.
   settlements" nice-to-have is a distinct, larger feature (needs a way to
   store an email address and something to send from) and remains
   unimplemented.
+- Saved profile (opt-in, local only): a "remember my info" checkbox in
+  the claim form saves `fullName`/`email`/`mailingAddress` to the user's
+  own browser (`localStorage`), pre-filling those fields on any future
+  settlement's claim form on that same device. Off by default, explained
+  in-line ("don't check this on a public or shared computer"), and
+  clearable at any time. Deliberately narrower than the "saved profiles /
+  accounts" nice-to-have below: no login, no server, no cross-device
+  sync, and never includes settlement-specific identifiers (notice IDs,
+  VINs, etc.) — those still require a fresh entry per settlement. Added
+  post-launch (2026-09-18) as the second bounded post-MVP feature.
 
 ## Nice-to-have (not blocking MVP)
 - Email/notification when a new settlement matching a user's past answers
@@ -60,7 +70,10 @@ account required to use the MVP.
   post-MVP).
 - Automated settlement discovery (scraping court records / administrator
   sites) to replace the manually curated list.
-- Saved profiles / accounts so returning users don't re-enter info.
+- Full accounts with login and server-side profile storage, so profile
+  data follows a user across devices (the local-only, opt-in version is
+  now implemented — see MVP scope above; this entry is only the
+  cross-device/account version, which needs a backend).
 
 ## Explicitly out of scope
 - Acting as the user's legal agent: ClaimFinder never submits a claim,

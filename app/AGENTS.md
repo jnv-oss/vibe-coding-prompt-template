@@ -49,10 +49,21 @@ would teach the wrong pattern; failures that took real time to diagnose.
   there with a plain message — never let the user reach the claim form or
   preview after a disqualifying answer (a no-proof false claim is a real
   perjury risk for the user, not just a UX nicety).
-- Form values live only in React component state — never write them to
-  `localStorage`, cookies, or any analytics/error-reporting SDK. If one is
-  added later, it must be configured to exclude `ClaimForm`/`ClaimPreview`
-  input values first.
+- Form values live only in React component state, with **one narrow,
+  deliberate exception**: `src/lib/savedProfile.ts` may persist exactly
+  `fullName`, `email`, and `mailingAddress` to `localStorage`, and only when
+  the user explicitly checks "remember my info" in `ClaimForm` — never
+  silently, never any other field. Settlement-specific identifiers (notice
+  IDs, VINs, class member IDs, PINs, etc.) must never be added to
+  `SAVED_PROFILE_FIELDS`; they belong to one settlement's notice, not to a
+  reusable profile. Do not widen this list. The checkbox starts unchecked
+  the first time (no saved profile yet) and reflects whether a profile is
+  currently saved on return visits — this app is used on shared/public
+  computers by people claiming money after a data breach, which is
+  exactly why opting in is explicit rather than assumed. Everything else
+  (settlement-specific fields, analytics, error-reporting SDKs) still
+  follows the original rule: never
+  written anywhere but component state.
 
 ## Protected areas
 
