@@ -4,19 +4,20 @@ Update this after major decisions, completed phases, or bugs that future agents 
 
 ## Current State
 
-- Current task: ClaimFinder MVP is deployed and live; first post-MVP feature (closing-soon deadline reminder) is built and verified, not yet pushed/merged.
-- Current phase: Deployed to GitHub Pages (PRs #1-#3 merged, confirmed live by the product owner each time). Added a fully client-side "closing in N days" badge (`src/lib/deadline.ts`) on the list and detail pages for settlements within 14 days of deadline — no backend/accounts/email, preserves the existing architecture.
-- Next step: commit, push, and open a PR for the deadline-reminder feature.
+- Current task: ClaimFinder MVP is deployed and live; two post-MVP features (closing-soon deadline reminder, opt-in local saved profile) are built and verified.
+- Current phase: Deployed to GitHub Pages (PRs #1-#4 merged, confirmed live by the product owner each time). Second post-MVP feature (saved profile) is built and verified locally, not yet pushed/merged.
+- Next step: commit, push, and open a PR for the saved-profile feature.
 - Blocked by: none.
 
 ## Decisions
 
 - 2026-09-18 No backend/database for MVP — all matching and auto-fill logic runs client-side so PII never reaches a server (see `docs/TechDesign-ClaimFinder-MVP.md`).
 - 2026-09-18 Discovery + auto-fill scope only, never auto-submit — user always submits the claim themselves on the official site (unauthorized-practice-of-law boundary, see `docs/research-ClaimFinder.md`).
-- 2026-09-18 Session-based, no accounts — nothing persisted beyond the current page load; no `localStorage`/cookies used for form data.
+- 2026-09-18 Session-based, no accounts — nothing persisted beyond the current page load; no `localStorage`/cookies used for form data, with one later, narrow, opt-in exception (see the 2026-09-18 saved-profile decision below).
 - 2026-09-18 Bumped `react-router-dom` to ^7.18.4 (from the originally planned ^6.26) to pick up a fix for an open-redirect CVE in `Link`/`useNavigate` — the API used (`BrowserRouter`, `Routes`, `Route`, `Link`, `useNavigate`, `useLocation`, `useParams`, `Navigate`) is unchanged between v6 and v7 in this declarative-mode usage.
 - 2026-09-18 Left `vite`/`vitest`/`esbuild` on their originally planned versions despite moderate dev-server-only advisories (arbitrary requests / path traversal against the local dev server) — not shipped in the production build; upgrading to the fixed majors (vite 8, vitest 5) is a larger jump than this pass justified. Revisit if this project graduates past MVP.
 - 2026-09-18 "Settlement notification" scoped to a client-side deadline reminder (badge shown when a settlement is within `CLOSING_SOON_DAYS` of its deadline), not real email — email would require adding a backend, a database for addresses/preferences, and an email-sending service, which is a different, larger feature, not a bounded change to the current architecture. User explicitly chose this scope over browser-push or email options when asked.
+- 2026-09-18 "Saved profiles" scoped to a local-only, opt-in exception to the "never persist form data" rule: `src/lib/savedProfile.ts` persists only `fullName`/`email`/`mailingAddress` to `localStorage`, only when the user checks "remember my info" in `ClaimForm`. Never saves settlement-specific fields (VINs, notice IDs, PINs, class member IDs). User explicitly chose this over full accounts-with-login (which would need a backend, same category as the email-notification decision above) when asked.
 
 ## AI / Tooling Decisions
 
@@ -38,3 +39,4 @@ Update this after major decisions, completed phases, or bugs that future agents 
 - [x] Deployment: `.github/workflows/deploy-claimfinder.yml` builds and deploys to GitHub Pages; base path (`/vibe-coding-prompt-template/`) and router `basename` verified locally via `vite preview` and confirmed live in production by a human at https://jnv-oss.github.io/vibe-coding-prompt-template/
 - [x] Settlement data verification — primary-source access is blocked by this environment's network policy; secondary-source cross-verification done and accepted by the product owner as sufficient for now (see Known Issues)
 - [x] Closing-soon deadline reminder (first post-MVP feature): `src/lib/deadline.ts` (`daysUntil`, `isClosingSoon`, `CLOSING_SOON_DAYS = 14`), wired into `SettlementList` and `SettlementDetailPage`. Verified with new unit tests (`deadline.test.ts`) and a new component test (`SettlementList.test.tsx`), plus a Playwright check with the browser clock frozen near a real settlement's deadline to confirm the badge actually renders (none of the current real settlements are naturally within the 14-day window today, so this required freezing time rather than editing seed data).
+- [x] Opt-in local saved profile (second post-MVP feature): `src/lib/savedProfile.ts` (`SAVED_PROFILE_FIELDS = ['fullName', 'email', 'mailingAddress']`, `saveProfile`/`loadSavedProfile`/`clearSavedProfile`/`hasSavedProfile`), wired into `ClaimForm` via a "remember my info" checkbox (starts unchecked with no saved profile) and a "Clear saved info" action. Verified with new unit tests (`savedProfile.test.ts`) and component tests (`ClaimForm.test.tsx`, including that settlement-specific fields like VIN are never saved or pre-filled), plus a real-browser Playwright walkthrough: filled and saved a profile on the Deere settlement, confirmed it correctly pre-filled `fullName`/`email`/`mailingAddress` (and only those) on the unrelated Fairchild settlement, cleared it, then confirmed a third settlement (Lands' End) showed genuinely empty fields afterward.
