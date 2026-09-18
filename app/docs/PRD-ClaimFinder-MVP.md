@@ -69,6 +69,12 @@ account required to use the MVP.
   ahead of "automated settlement discovery" below — filtering matters
   more once there's more than a handful of curated settlements to
   scroll through.
+- Downloadable claim summary: a "Download claim summary" button on the
+  claim preview screen saves a plain-text (`.txt`) copy of the filled
+  summary — same fields, same never-submitted disclaimer, plus the
+  official site link — via a native `Blob` + `<a download>`, no PDF
+  library added just for this. Added post-launch (2026-09-18) as the
+  fourth bounded post-MVP feature.
 
 ## Nice-to-have (not blocking MVP)
 - Email/notification when a new settlement matching a user's past answers
@@ -166,7 +172,7 @@ account required to use the MVP.
   "oneLiner": "A web app that helps consumers discover open class action settlements they qualify for and pre-fills the official claim form for them to review and submit themselves.",
   "targetUsers": "Individual consumers checking eligibility for class action settlement payouts",
   "phase": "Foundation",
-  "mustHave": ["curated settlement list", "eligibility questionnaire", "auto-fill claim preview", "non-legal-advice disclaimer", "session-based no-account flow", "HTTPS + encrypted-at-rest + no raw-PII logging", "closing-soon deadline reminder", "opt-in local saved profile", "category filter and search"],
+  "mustHave": ["curated settlement list", "eligibility questionnaire", "auto-fill claim preview", "non-legal-advice disclaimer", "session-based no-account flow", "HTTPS + encrypted-at-rest + no raw-PII logging", "closing-soon deadline reminder", "opt-in local saved profile", "category filter and search", "downloadable claim summary"],
   "niceToHave": ["email notifications for matching settlements", "full accounts with cross-device profile sync", "automated settlement discovery"],
   "notInMvp": ["auto-submission on user's behalf", "legal representation or advice", "payments/monetization", "notarized/e-signature flows"],
   "successMetrics": ["visitor can complete discovery-to-filled-preview flow for a seeded settlement without errors", "ineligible users are correctly blocked before auto-fill", "no raw PII appears in logs"]

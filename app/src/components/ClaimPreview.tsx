@@ -1,13 +1,23 @@
 import type { ClaimField } from '../types/settlement';
+import { buildClaimSummaryText, downloadClaimSummary } from '../lib/claimSummary';
 
 interface Props {
+  settlementId: string;
+  settlementName: string;
   fields: ClaimField[];
   values: Record<string, string>;
   administratorUrl: string;
   onBack: () => void;
 }
 
-export default function ClaimPreview({ fields, values, administratorUrl, onBack }: Props) {
+export default function ClaimPreview({
+  settlementId,
+  settlementName,
+  fields,
+  values,
+  administratorUrl,
+  onBack,
+}: Props) {
   return (
     <div className="space-y-4">
       <p className="text-gray-700">
@@ -28,6 +38,18 @@ export default function ClaimPreview({ fields, values, administratorUrl, onBack 
       <div className="flex flex-wrap gap-3">
         <button type="button" onClick={onBack} className="px-4 py-2 rounded-md border border-gray-300">
           Back
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            downloadClaimSummary(
+              settlementId,
+              buildClaimSummaryText(settlementName, fields, values, administratorUrl),
+            )
+          }
+          className="px-4 py-2 rounded-md border border-gray-300"
+        >
+          Download claim summary
         </button>
         <a
           href={administratorUrl}
