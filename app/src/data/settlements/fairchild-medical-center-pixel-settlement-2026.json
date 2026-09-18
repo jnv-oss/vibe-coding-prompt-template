@@ -3,6 +3,7 @@
   "name": "Doe, et al. v. Siskiyou Hospital, Inc. d/b/a Fairchild Medical Center (Pixel Privacy Settlement)",
   "administratorUrl": "https://fmcprivacyclassaction.com/",
   "deadline": "2026-11-02",
+  "category": "healthcare-privacy",
   "summary": "Settlement resolving claims that Fairchild Medical Center's website tracking pixels disclosed patients' private information to third parties without consent. California class members can claim $25 cash with no proof, plus a year of identity/privacy protection services.",
   "eligibilityQuestions": [
     {

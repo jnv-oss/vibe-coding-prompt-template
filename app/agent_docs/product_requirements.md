@@ -16,6 +16,7 @@ Use this as the short build-facing version of the PRD. Do not paste the entire P
 - Session-based, no accounts - nothing persisted server-side beyond the current page; no raw PII in logs (there is no backend to log to).
 - Closing-soon deadline reminder - a badge on the list/detail pages when a settlement's deadline is within 14 days; fully client-side (`src/lib/deadline.ts`), no accounts/email/backend.
 - Saved profile (opt-in, local only) - a "remember my info" checkbox saves fullName/email/mailingAddress to the browser's `localStorage` (`src/lib/savedProfile.ts`), off by default, clearable anytime; never saves settlement-specific fields (VINs, notice IDs, etc.).
+- Category filter and search - each settlement is tagged with a category (data breach, antitrust, healthcare privacy, product liability); filter pills plus a text search over name/summary (`src/lib/filterSettlements.ts`), fully client-side.
 
 ## Nice-To-Have Features
 
