@@ -1,0 +1,19 @@
+{
+  "id": "example-social-app-data-privacy-2026",
+  "name": "[Example] ConnectSphere Data Privacy Settlement",
+  "administratorUrl": "https://example-settlement-administrator.test/connectsphere-privacy",
+  "deadline": "2026-11-15",
+  "summary": "Fictional example settlement: placeholder for a settlement over an alleged data-sharing privacy violation.",
+  "eligibilityQuestions": [
+    {
+      "id": "hadAccount",
+      "text": "Did you have a ConnectSphere account between June 2021 and March 2024?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name", "type": "text" },
+    { "id": "email", "label": "Email address used for the ConnectSphere account", "type": "email" },
+    { "id": "accountCreatedDate", "label": "Approximate account creation date", "type": "date", "optional": true }
+  ]
+}

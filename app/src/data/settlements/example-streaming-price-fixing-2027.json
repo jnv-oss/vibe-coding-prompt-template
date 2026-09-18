@@ -1,0 +1,24 @@
+{
+  "id": "example-streaming-price-fixing-2027",
+  "name": "[Example] StreamVault Price-Fixing Settlement",
+  "administratorUrl": "https://example-settlement-administrator.test/streamvault-pricing",
+  "deadline": "2027-03-01",
+  "summary": "Fictional example settlement: placeholder for a settlement over alleged anti-competitive subscription pricing.",
+  "eligibilityQuestions": [
+    {
+      "id": "hadSubscription",
+      "text": "Did you have a paid StreamVault subscription between January 2020 and December 2023?",
+      "required": true
+    },
+    {
+      "id": "usResident",
+      "text": "Were you a U.S. resident during that subscription period?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name", "type": "text" },
+    { "id": "email", "label": "Email used for the StreamVault subscription", "type": "email" },
+    { "id": "mailingAddress", "label": "Mailing address", "type": "text" }
+  ]
+}

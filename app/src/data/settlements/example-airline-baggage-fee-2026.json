@@ -1,0 +1,25 @@
+{
+  "id": "example-airline-baggage-fee-2026",
+  "name": "[Example] Skyward Air Baggage Fee Settlement",
+  "administratorUrl": "https://example-settlement-administrator.test/skyward-baggage",
+  "deadline": "2026-12-31",
+  "summary": "Fictional example settlement: placeholder for a settlement over disputed checked-baggage fees.",
+  "eligibilityQuestions": [
+    {
+      "id": "flewWithAirline",
+      "text": "Did you fly with Skyward Air between January 2022 and December 2023?",
+      "required": true
+    },
+    {
+      "id": "paidBaggageFee",
+      "text": "Did you pay a checked-baggage fee on that flight?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name", "type": "text" },
+    { "id": "email", "label": "Email address", "type": "email" },
+    { "id": "flightDate", "label": "Approximate flight date", "type": "date" },
+    { "id": "confirmationNumber", "label": "Booking confirmation number (if known)", "type": "text", "optional": true }
+  ]
+}
