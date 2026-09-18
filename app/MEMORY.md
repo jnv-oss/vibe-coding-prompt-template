@@ -4,10 +4,10 @@ Update this after major decisions, completed phases, or bugs that future agents 
 
 ## Current State
 
-- Current task: ClaimFinder MVP core flow (settlement list -> eligibility questionnaire -> claim preview) is built and verified end-to-end, now seeded with real settlement data.
-- Current phase: Core MVP flow complete with 4 real, currently-tracked settlements (see `src/data/settlements/README.md` for sourcing/verification notes and limitations). Still needed before real deployment: a chosen static host, and a human spot-check of each settlement's official site against this app's data.
-- Next step: Decide on and wire up an actual static host for deployment.
-- Blocked by: none.
+- Current task: ClaimFinder MVP core flow is built, seeded with real settlement data, and wired up to deploy to GitHub Pages.
+- Current phase: Code-complete for MVP. Two things remain outside what this agent can do: (1) a human needs to flip repo Settings > Pages > Source to "GitHub Actions" once (no tool available to do this via the API), and (2) a human should spot-check each seeded settlement's official site against this app's data (see `src/data/settlements/README.md`).
+- Next step: after the PR merges to `main` and Pages is enabled, the deploy workflow runs automatically on the next push to `main` under `app/**`, or can be triggered manually via `workflow_dispatch`.
+- Blocked by: none for this agent; the Pages source setting is a one-time human action.
 
 ## Decisions
 
@@ -34,4 +34,5 @@ Update this after major decisions, completed phases, or bugs that future agents 
 - [x] Core data model (settlement JSON schema + 4 real seed settlements, typed + runtime-validated in `src/data/settlements/index.ts`)
 - [x] Auth — not applicable (no accounts in MVP)
 - [x] Core MVP flow (list -> questionnaire -> claim form -> preview), verified with typecheck, unit/component tests, lint, build, and a Playwright walkthrough of the golden path, the ineligibility gate, expired-settlement filtering, and the fresh-visit eligibility guard
-- [ ] Launch checks — no real settlement data or deployment target yet
+- [x] Deployment wired up: `.github/workflows/deploy-claimfinder.yml` builds and deploys to GitHub Pages; base path (`/vibe-coding-prompt-template/`) and router `basename` verified locally via `vite preview`, including that a deep-linked route resolves correctly
+- [ ] Launch checks — Pages "Source: GitHub Actions" still needs to be enabled by a human, and a human still needs to spot-check the seeded settlement data against each official site

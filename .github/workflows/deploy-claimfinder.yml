@@ -1,0 +1,78 @@
+# Builds app/ (ClaimFinder) and deploys it to GitHub Pages.
+#
+# One-time manual step required (not doable via this workflow): in the
+# repo's Settings > Pages, set "Build and deployment > Source" to
+# "GitHub Actions". Until that's done, this workflow will build
+# successfully but the deploy-pages step will fail with "Pages site not
+# found" or similar.
+#
+# ClaimFinder is a static app with no backend/database (see
+# app/docs/TechDesign-ClaimFinder-MVP.md) — this workflow only builds and
+# publishes static files; nothing here handles secrets, servers, or data.
+
+name: Deploy ClaimFinder to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - ".github/workflows/deploy-claimfinder.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build (Pages base path)
+        run: npm run build
+        env:
+          GITHUB_PAGES: "true"
+
+      - name: SPA fallback for client-side routing
+        run: cp dist/index.html dist/404.html
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

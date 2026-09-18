@@ -11,7 +11,7 @@ Last verified: 2026-09
 | Database | none (curated JSON files in-repo) | `src/data/settlements/*.json`, hand-maintained; update = edit/add a file and redeploy. |
 | Auth | none | No accounts in MVP; nothing to authenticate. |
 | Styling | Tailwind CSS | Fast to build a clean, disclaimer-forward UI without a design-system dependency. |
-| Deployment | static host (Vercel/Netlify-style static build) | Any static host gives HTTPS by default with zero extra infra. |
+| Deployment | GitHub Pages, via `.github/workflows/deploy-claimfinder.yml` | Free, HTTPS by default, no new third-party account. Requires a one-time manual step: repo Settings > Pages > Source: "GitHub Actions". Served at `/vibe-coding-prompt-template/` (GitHub Pages project-site path), so `vite.config.ts` sets `base` and `App.tsx` sets the router `basename` from `import.meta.env.BASE_URL` only when `GITHUB_PAGES=true` is set (the CI build sets it; local dev/build don't). |
 
 ## Commands
 
