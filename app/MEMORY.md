@@ -4,10 +4,10 @@ Update this after major decisions, completed phases, or bugs that future agents 
 
 ## Current State
 
-- Current task: ClaimFinder MVP core flow is built, seeded with real settlement data, and wired up to deploy to GitHub Pages.
-- Current phase: Code-complete for MVP. Two things remain outside what this agent can do: (1) a human needs to flip repo Settings > Pages > Source to "GitHub Actions" once (no tool available to do this via the API), and (2) a human should spot-check each seeded settlement's official site against this app's data (see `src/data/settlements/README.md`).
-- Next step: after the PR merges to `main` and Pages is enabled, the deploy workflow runs automatically on the next push to `main` under `app/**`, or can be triggered manually via `workflow_dispatch`.
-- Blocked by: none for this agent; the Pages source setting is a one-time human action.
+- Current task: ClaimFinder MVP is built, seeded with real settlement data, and live on GitHub Pages.
+- Current phase: Deployed. PR #1 merged to `main`; a human enabled Settings > Pages > Source: "GitHub Actions"; the deploy workflow ran automatically on merge (build + deploy jobs both succeeded) and the human confirmed the live site at https://jnv-oss.github.io/vibe-coding-prompt-template/ loads and renders correctly. Remaining: a human should still spot-check each seeded settlement's official site against this app's data (see `src/data/settlements/README.md`) before treating it as production-accurate.
+- Next step: any further `app/**` push to `main` redeploys automatically; no other deploy action needed.
+- Blocked by: none.
 
 ## Decisions
 
@@ -34,5 +34,5 @@ Update this after major decisions, completed phases, or bugs that future agents 
 - [x] Core data model (settlement JSON schema + 4 real seed settlements, typed + runtime-validated in `src/data/settlements/index.ts`)
 - [x] Auth — not applicable (no accounts in MVP)
 - [x] Core MVP flow (list -> questionnaire -> claim form -> preview), verified with typecheck, unit/component tests, lint, build, and a Playwright walkthrough of the golden path, the ineligibility gate, expired-settlement filtering, and the fresh-visit eligibility guard
-- [x] Deployment wired up: `.github/workflows/deploy-claimfinder.yml` builds and deploys to GitHub Pages; base path (`/vibe-coding-prompt-template/`) and router `basename` verified locally via `vite preview`, including that a deep-linked route resolves correctly
-- [ ] Launch checks — Pages "Source: GitHub Actions" still needs to be enabled by a human, and a human still needs to spot-check the seeded settlement data against each official site
+- [x] Deployment: `.github/workflows/deploy-claimfinder.yml` builds and deploys to GitHub Pages; base path (`/vibe-coding-prompt-template/`) and router `basename` verified locally via `vite preview` and confirmed live in production by a human at https://jnv-oss.github.io/vibe-coding-prompt-template/
+- [ ] Launch checks — a human still needs to spot-check the seeded settlement data against each official site before this is production-accurate
