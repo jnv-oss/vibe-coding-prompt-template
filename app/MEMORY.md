@@ -4,9 +4,9 @@ Update this after major decisions, completed phases, or bugs that future agents 
 
 ## Current State
 
-- Current task: ClaimFinder MVP is built, seeded with real settlement data, and live on GitHub Pages.
-- Current phase: Deployed. PR #1 merged to `main`; a human enabled Settings > Pages > Source: "GitHub Actions"; the deploy workflow ran automatically on merge (build + deploy jobs both succeeded) and the human confirmed the live site at https://jnv-oss.github.io/vibe-coding-prompt-template/ loads and renders correctly. Remaining: a human should still spot-check each seeded settlement's official site against this app's data (see `src/data/settlements/README.md`) before treating it as production-accurate.
-- Next step: any further `app/**` push to `main` redeploys automatically; no other deploy action needed.
+- Current task: ClaimFinder MVP is deployed and live; first post-MVP feature (closing-soon deadline reminder) is built and verified, not yet pushed/merged.
+- Current phase: Deployed to GitHub Pages (PRs #1-#3 merged, confirmed live by the product owner each time). Added a fully client-side "closing in N days" badge (`src/lib/deadline.ts`) on the list and detail pages for settlements within 14 days of deadline — no backend/accounts/email, preserves the existing architecture.
+- Next step: commit, push, and open a PR for the deadline-reminder feature.
 - Blocked by: none.
 
 ## Decisions
@@ -16,6 +16,7 @@ Update this after major decisions, completed phases, or bugs that future agents 
 - 2026-09-18 Session-based, no accounts — nothing persisted beyond the current page load; no `localStorage`/cookies used for form data.
 - 2026-09-18 Bumped `react-router-dom` to ^7.18.4 (from the originally planned ^6.26) to pick up a fix for an open-redirect CVE in `Link`/`useNavigate` — the API used (`BrowserRouter`, `Routes`, `Route`, `Link`, `useNavigate`, `useLocation`, `useParams`, `Navigate`) is unchanged between v6 and v7 in this declarative-mode usage.
 - 2026-09-18 Left `vite`/`vitest`/`esbuild` on their originally planned versions despite moderate dev-server-only advisories (arbitrary requests / path traversal against the local dev server) — not shipped in the production build; upgrading to the fixed majors (vite 8, vitest 5) is a larger jump than this pass justified. Revisit if this project graduates past MVP.
+- 2026-09-18 "Settlement notification" scoped to a client-side deadline reminder (badge shown when a settlement is within `CLOSING_SOON_DAYS` of its deadline), not real email — email would require adding a backend, a database for addresses/preferences, and an email-sending service, which is a different, larger feature, not a bounded change to the current architecture. User explicitly chose this scope over browser-push or email options when asked.
 
 ## AI / Tooling Decisions
 
@@ -36,3 +37,4 @@ Update this after major decisions, completed phases, or bugs that future agents 
 - [x] Core MVP flow (list -> questionnaire -> claim form -> preview), verified with typecheck, unit/component tests, lint, build, and a Playwright walkthrough of the golden path, the ineligibility gate, expired-settlement filtering, and the fresh-visit eligibility guard
 - [x] Deployment: `.github/workflows/deploy-claimfinder.yml` builds and deploys to GitHub Pages; base path (`/vibe-coding-prompt-template/`) and router `basename` verified locally via `vite preview` and confirmed live in production by a human at https://jnv-oss.github.io/vibe-coding-prompt-template/
 - [x] Settlement data verification — primary-source access is blocked by this environment's network policy; secondary-source cross-verification done and accepted by the product owner as sufficient for now (see Known Issues)
+- [x] Closing-soon deadline reminder (first post-MVP feature): `src/lib/deadline.ts` (`daysUntil`, `isClosingSoon`, `CLOSING_SOON_DAYS = 14`), wired into `SettlementList` and `SettlementDetailPage`. Verified with new unit tests (`deadline.test.ts`) and a new component test (`SettlementList.test.tsx`), plus a Playwright check with the browser clock frozen near a real settlement's deadline to confirm the badge actually renders (none of the current real settlements are naturally within the 14-day window today, so this required freezing time rather than editing seed data).
