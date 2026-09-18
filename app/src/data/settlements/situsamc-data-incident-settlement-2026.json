@@ -1,0 +1,33 @@
+{
+  "id": "situsamc-data-incident-settlement-2026",
+  "name": "In re SitusAMC Holdings Corporation Data Breach Litigation Settlement",
+  "administratorUrl": "https://www.samcdatasettlement.com/",
+  "deadline": "2026-11-06",
+  "summary": "Settlement resolving claims over a November 2025 data breach at SitusAMC. Offers about $75 cash with no proof, or up to $5,000 for documented losses, plus a year of credit monitoring.",
+  "eligibilityQuestions": [
+    {
+      "id": "receivedNotice",
+      "text": "Did you receive a data breach notification from SitusAMC (or The Lash Group) about an incident from around November 12, 2025?",
+      "required": true
+    },
+    {
+      "id": "usResident",
+      "text": "Do you reside in the United States?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name", "type": "text" },
+    { "id": "email", "label": "Email address", "type": "email" },
+    {
+      "id": "noticeLoginId",
+      "label": "Login ID from your settlement notice (required by the official site to file online)",
+      "type": "text"
+    },
+    {
+      "id": "noticePin",
+      "label": "PIN from your settlement notice",
+      "type": "text"
+    }
+  ]
+}

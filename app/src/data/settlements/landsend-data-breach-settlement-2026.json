@@ -1,0 +1,28 @@
+{
+  "id": "landsend-data-breach-settlement-2026",
+  "name": "Lands' End Data Breach Settlement (Jones, et al. v. Lands' End, Inc.)",
+  "administratorUrl": "https://landsenddatasettlement.com/",
+  "deadline": "2026-10-22",
+  "summary": "Settlement resolving claims over a December 2024 data breach affecting Lands' End customers. Offers about $60 cash with no proof, or up to $5,000 for documented losses.",
+  "eligibilityQuestions": [
+    {
+      "id": "receivedNotice",
+      "text": "Did you receive a notice from Lands' End about a data breach that occurred in December 2024?",
+      "required": true
+    },
+    {
+      "id": "usResident",
+      "text": "Do you reside in the United States?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name", "type": "text" },
+    { "id": "email", "label": "Email address", "type": "email" },
+    {
+      "id": "noticeLoginId",
+      "label": "Login ID from your Lands' End settlement notice letter (required by the official site to verify membership)",
+      "type": "text"
+    }
+  ]
+}

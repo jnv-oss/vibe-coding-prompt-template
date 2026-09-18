@@ -1,0 +1,30 @@
+{
+  "id": "deere-repair-settlement-2026",
+  "name": "Deere Repair Services Antitrust Litigation Settlement",
+  "administratorUrl": "https://www.deererepairsettlement.com/",
+  "deadline": "2026-12-31",
+  "summary": "$99 million settlement resolving antitrust claims that John Deere monopolized repair services for its large agricultural equipment. Class members who paid for repairs can claim a pro rata share of the fund.",
+  "eligibilityQuestions": [
+    {
+      "id": "paidForRepair",
+      "text": "Did you or your farm business pay John Deere, or an authorized Deere dealer, for diagnosis, maintenance, or repair of Deere Large Agricultural Equipment (6000/7000/8000/9000 series tractors, combines, harvesters, etc.) between January 10, 2018 and May 18, 2026?",
+      "required": true
+    },
+    {
+      "id": "notFactoryWarranty",
+      "text": "Did you pay for that repair yourself or under an extended warranty you purchased (i.e. not a repair covered under Deere's original factory warranty)?",
+      "required": true
+    }
+  ],
+  "claimFields": [
+    { "id": "fullName", "label": "Full legal name or farm business name", "type": "text" },
+    { "id": "email", "label": "Email address", "type": "email" },
+    { "id": "mailingAddress", "label": "Mailing address", "type": "text" },
+    {
+      "id": "noticeId",
+      "label": "Notice ID from your settlement notice (optional — without one, the official site requires you to attach documentation for each repair claimed)",
+      "type": "text",
+      "optional": true
+    }
+  ]
+}
